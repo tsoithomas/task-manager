@@ -6,8 +6,7 @@ import {Task} from "../Task"
 import { useState } from 'react'
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  setTasks([]);
+  const [tasks] = useState<Task[]>([]);
 
   return (
     <>
