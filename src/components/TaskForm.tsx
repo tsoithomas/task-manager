@@ -14,10 +14,8 @@ const TaskForm = () => {
     const formSchema = z
         .object({
             title: z.string().min(1, "Title is required").max(100),
-            duedate: z.string().refine((arg) =>
-                    arg.match(
-                    /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)((-(\d{2}):(\d{2})|Z)?)$/
-                )),
+            duedate: z.string()
+                ,
             category: z.string().min(1, "Category is required")
             });
     type FormSchemaType = z.infer<typeof formSchema>;
@@ -88,7 +86,7 @@ const TaskForm = () => {
                 <label className="flex flex-row place-content-between text-sm font-bold mb-2" htmlFor="category">
                     <div>Category</div>
                     {errors.category && (
-                        <span className="text-red-400 block mt-2">
+                        <span className="text-red-400 block">
                             {errors.category?.message}
                         </span>
                         )}
@@ -96,8 +94,10 @@ const TaskForm = () => {
                 <select 
                     className="block appearance-none text-black w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     id="category"
+                    defaultValue=""
                     {...register("category")}
                     >
+                    <option value="" disabled>Choose a category</option>
                     {categories.map((item) => <option key={item} value={item}>{item}</option>)}
                 </select>
                 </div>
