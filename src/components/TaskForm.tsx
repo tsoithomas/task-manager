@@ -10,9 +10,9 @@ interface TaskFormProps {
 }
 
 const TaskForm = (props: TaskFormProps) => {
-    const [menu, setMenu] = useState("h-[22rem]");
+    const [menu, setMenu] = useState("h-[22rem] py-5");
     function toggleMenu(): void {
-        setMenu(menu == "h-[22rem]" ? "h-0 py-0" : "h-[22rem]");
+        setMenu(menu == "h-[22rem] py-5" ? "h-0 py-0" : "h-[22rem] py-5");
     }
 
     const formSchema = z
@@ -49,7 +49,7 @@ const TaskForm = (props: TaskFormProps) => {
                 </div>
             </header>
 
-            <div className={"overflow-y-hidden bg-gray-800 px-10 py-5 text-gray-300 transition-all duration-250 " + menu}>
+            <div className={"overflow-y-hidden bg-gray-800 px-10 text-gray-300 transition-all duration-250 " + menu}>
             <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                 <label className="flex flex-row place-content-between text-sm font-bold mb-2 space" htmlFor="title">
