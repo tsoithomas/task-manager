@@ -22,11 +22,24 @@ function App() {
     setTasks((curTasks) => {return [...curTasks, newTask];});
   };
 
+  const handleDeleteTask = (id: number) => {
+    setTasks((curTasks) => {
+      for (let i=0; i<curTasks.length; i++) {
+        const task = curTasks[i];
+        if (task.id == id) {
+          curTasks.splice(i, 1);
+          break;
+        }
+      }
+      return [...curTasks];
+    });
+  };
+
 
   return (
     <>
       <TaskForm onAddTask={handleAddTask} />
-      <TaskList tasks={tasks}/>
+      <TaskList onDeleteTask = {handleDeleteTask} tasks={tasks}/>
     </>
   )
 }
