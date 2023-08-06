@@ -1,16 +1,17 @@
 import { Task } from "../Task";
+import TaskFilter from "./TaskFilter";
 
 interface TaskListProp {
+    onDeleteTask: (id: number) => void,
     tasks: Array<Task>
 }
 
-const TaskFilter = (props: TaskListProp) => {
-
-
-
-
+const TaskList = (props: TaskListProp) => {
     return (
         <div className="bg-gray-300 grow p-5 ">
+            <TaskFilter />
+
+
             {
                 props.tasks.length > 0 
                 ? (
@@ -32,7 +33,10 @@ const TaskFilter = (props: TaskListProp) => {
                                             <td className="px-6 py-3">{item.duedate.toString()}</td>
                                             <td className="px-6 py-3">{item.category}</td>
                                             <td className="px-6 py-3 text-right">
-                                                <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                                <button 
+                                                    className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                                    onClick={() => {props.onDeleteTask(item.id);}}
+                                                    >
                                                     Delete
                                                 </button>
                                             </td>
@@ -50,4 +54,4 @@ const TaskFilter = (props: TaskListProp) => {
 };
 
 
-export default TaskFilter;
+export default TaskList;
