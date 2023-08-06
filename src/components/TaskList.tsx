@@ -1,3 +1,4 @@
+import { ChangeEvent, useState } from "react";
 import { Task } from "../Task";
 import TaskFilter from "./TaskFilter";
 
@@ -6,11 +7,23 @@ interface TaskListProp {
     tasks: Array<Task>
 }
 
+
 const TaskList = (props: TaskListProp) => {
+    const [selectedCategory, setSelectedCategory] = useState("");
+
+    const handleSelectCateogry = (e: ChangeEvent<HTMLSelectElement>) => {
+        const category = e.target.value;
+        setSelectedCategory(category);
+    };
+    
+
+    function categoryFilter(value: Task): value is Task {
+        return selectedCategory == "" || selectedCategory == value.category;
+    }
+
     return (
         <div className="bg-gray-300 grow p-5 ">
-            <TaskFilter />
-
+            <TaskFilter onSelectCateogry={handleSelectCateogry} />
 
             {
                 props.tasks.length > 0 
@@ -27,7 +40,7 @@ const TaskList = (props: TaskListProp) => {
                             </thead>
                             <tbody>
                                 {
-                                    props.tasks.map((item) => {return (
+                                    props.tasks.filter(categoryFilter).map((item) => {return (
                                         <tr key={item.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row" className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.title}</th>
                                             <td className="px-6 py-3">{item.duedate.toString()}</td>

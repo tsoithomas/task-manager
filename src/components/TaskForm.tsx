@@ -15,10 +15,9 @@ const TaskForm = (props: TaskFormProps) => {
         setMenu(menu == "h-[22rem] py-5" ? "h-0 py-0" : "h-[22rem] py-5");
     }
 
-    const formSchema = z
-        .object({
+    const formSchema = z.object({
             title: z.string().min(3, "Title is required").max(50),
-            duedate: z.string(),
+            duedate: z.string().default("2023-08-09"),
             category: z.string().min(1, "Category is required")
             });
     type FormSchemaType = z.infer<typeof formSchema>;
@@ -61,7 +60,7 @@ const TaskForm = (props: TaskFormProps) => {
                     )}
                 </label>
                 <input 
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:border-x-8 hover:border-sky-300 transition-all" 
                     id="title" 
                     type="text" 
                     placeholder="Enter a title"
@@ -79,7 +78,7 @@ const TaskForm = (props: TaskFormProps) => {
                         )}
                 </label>
                 <input 
-                    className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:border-x-8 hover:border-sky-300 transition-all" 
                     id="duedate" 
                     type="date"
                     {...register("duedate")}
@@ -96,7 +95,7 @@ const TaskForm = (props: TaskFormProps) => {
                         )}
                 </label>
                 <select 
-                    className="block appearance-none text-black w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    className="block appearance-none text-black w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline hover:border-x-8 hover:border-sky-300 transition-all"
                     id="category"
                     defaultValue=""
                     {...register("category")}
@@ -113,14 +112,11 @@ const TaskForm = (props: TaskFormProps) => {
                     >
                     Submit
                 </button>
-
                 </div>
             </form>
             </div>
         </div>
     )
-
-
 };
 
 
