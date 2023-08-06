@@ -4,15 +4,45 @@ interface TaskListProp {
     tasks: Array<Task>
 }
 
-const TaskFilter = (prop: TaskListProp) => {
+const TaskFilter = (props: TaskListProp) => {
+
 
 
 
     return (
-        <div className="bg-gray-300 grow p-10 ">
+        <div className="bg-gray-300 grow p-5 ">
             {
-                prop.tasks.length > 0 
-                ? "Ok"
+                props.tasks.length > 0 
+                ? (
+                    <div className="relative overflow-x-auto shadow-lg sm:rounded-lg ">
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3">Title</th>
+                                    <th scope="col" className="px-6 py-3">Due Date</th>
+                                    <th scope="col" className="px-6 py-3">Category</th>
+                                    <th scope="col" className="px-6 py-3"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    props.tasks.map((item) => {return (
+                                        <tr key={item.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <th scope="row" className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.title}</th>
+                                            <td className="px-6 py-3">{item.duedate.toString()}</td>
+                                            <td className="px-6 py-3">{item.category}</td>
+                                            <td className="px-6 py-3 text-right">
+                                                <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )})
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                )
                 : "No tasks yet 😭"
             }
         </div>

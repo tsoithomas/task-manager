@@ -5,17 +5,20 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const TaskForm = () => {
+interface TaskFormProps {
+    onAddTask: (task: TaskFormData) => void,
+}
+
+const TaskForm = (props: TaskFormProps) => {
     const [menu, setMenu] = useState("h-[22rem]");
     function toggleMenu(): void {
-        setMenu(menu == "h-[22rem]" ? "h-0 pt-0" : "h-[22rem]");
+        setMenu(menu == "h-[22rem]" ? "h-0 py-0" : "h-[22rem]");
     }
 
     const formSchema = z
         .object({
-            title: z.string().min(1, "Title is required").max(100),
-            duedate: z.string()
-                ,
+            title: z.string().min(3, "Title is required").max(50),
+            duedate: z.string(),
             category: z.string().min(1, "Category is required")
             });
     type FormSchemaType = z.infer<typeof formSchema>;
@@ -26,10 +29,11 @@ const TaskForm = () => {
       } = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
     });
-
     const onSubmit: SubmitHandler<FormSchemaType> =  (data) => {
         console.log(data);
+        props.onAddTask(data);
     };
+
 
     return (
         <div className="drop-shadow">
@@ -45,7 +49,7 @@ const TaskForm = () => {
                 </div>
             </header>
 
-            <div className={"overflow-y-hidden bg-gray-800 px-10 pt-5 text-gray-300 transition-all duration-250 " + menu}>
+            <div className={"overflow-y-hidden bg-gray-800 px-10 py-5 text-gray-300 transition-all duration-250 " + menu}>
             <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                 <label className="flex flex-row place-content-between text-sm font-bold mb-2 space" htmlFor="title">
@@ -104,7 +108,7 @@ const TaskForm = () => {
 
                 <div className="flex items-center justify-between">
                 <button 
-                    className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+                    className="bg-sky-900 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
                     disabled={isSubmitting}
                     >
                     Submit
