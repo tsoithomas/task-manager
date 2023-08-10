@@ -43,7 +43,9 @@ To run the app:
 ## Usage
 Enter a title, select a date and a category, then submit the form to have the task added to the manager. The data is stored on your localStorage, so it will remain even after you refresh the page.
 
-![](https://raw.githubusercontent.com/tsoithomas/task-manager/main/TaskManager.png)
+Use the filter drop-down menu to show only items of the selected category.
+
+![](https://github.com/tsoithomas/task-manager/blob/main/taskmanager.png?raw=true)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to
