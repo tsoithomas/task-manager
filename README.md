@@ -1,6 +1,9 @@
 # Task Manager
 The Task Management App is your all-in-one solution for staying organized.
 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
@@ -31,7 +34,7 @@ These instructions will get you a copy of the project up and running on your loc
 machine for development and testing purposes.
 
 ### Prerequisites
-- React
+- Node.js
 
 ### Installing
 To install:
