@@ -3,6 +3,7 @@ The Task Management App is your all-in-one solution for staying organized.
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -37,11 +38,14 @@ machine for development and testing purposes.
 - Node.js
 
 ### Installing
-To install:
-```npm install```
-
-To run the app:
-```npm run dev```
+Install with the following command:
+```
+npm install
+```
+Run the app:
+```
+npm run dev
+```
 
 ## Usage
 Enter a title, select a date and a category, then submit the form to have the task added to the manager. The data is stored on your localStorage, so it will remain even after you refresh the page.
